@@ -1,0 +1,11 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+@using Bupa.MotExpiry.App.Components.HomePageComponents
+@using Bupa.MotExpiry.App.Constants
+
+<PageTitle>MOT Expiry Checker</PageTitle>
+
+<Input InputLabel="@DisplayStrings.RegistraionInputLabel" BindInput="@State.InputRegistration" />
+
+<MotResultsTable />
