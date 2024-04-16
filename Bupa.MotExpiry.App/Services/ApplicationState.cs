@@ -7,22 +7,9 @@ namespace Bupa.MotExpiry.App.Services;
 /// </summary>
 public class ApplicationState
 {
-    private string _inputRegistraion = string.Empty;
+    public string InputRegistration { get; set; } = string.Empty;
 
-    public string InputRegistration 
-    {
-        get 
-        {
-            return _inputRegistraion;
-        }
-        set
-        {
-            _inputRegistraion = value;
-            ApplicationStateHasChanged();
-        }
-    }
-
-    public CarDetails CarDetails { get; set; }
+    public CarDetails? CarDetails { get; set; }
 
     /// <summary>
     /// This multicast delegate is used to register handlers

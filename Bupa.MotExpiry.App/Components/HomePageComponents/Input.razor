@@ -1,9 +1,10 @@
-﻿<div class="container">
-    <div class="row">
-        <div class="form-floating mb-3">
-            <input class="form-control" id="registraionInput" placeholder="@InputLabel"
-                   type="text" maxlength="7" @bind-value="@ApplicationState.InputRegistration" @bind-value:event="oninput" />
-            <label for="registraionInput">@InputLabel</label>
-        </div>
+﻿@using Bupa.MotExpiry.App.Constants
+
+<form class="form-inline">
+    <div class="form-floating mb-3">
+        <input class="form-control" id="registraionInput" placeholder="@InputLabel"
+               type="text" maxlength="7" @bind-value="@_bindInput" @bind-value:event="oninput" />
+        <label for="registraionInput">@InputLabel</label>
     </div>
-</div>
+    <button type="submit" class="btn btn-outline-primary" @onclick=@ProcessInput>@DisplayStrings.Enter</button>
+</form>

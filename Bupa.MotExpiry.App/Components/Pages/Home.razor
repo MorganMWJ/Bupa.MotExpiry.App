@@ -6,6 +6,12 @@
 
 <PageTitle>MOT Expiry Checker</PageTitle>
 
-<Input InputLabel="@DisplayStrings.RegistraionInputLabel" BindInput="@State.InputRegistration" />
+<div class="container-fluid">
+    <div class="row">
+        <Input InputLabel="@DisplayStrings.RegistraionInputLabel" InputCallback=@SearchWithRegistration />
+    </div>
+    <div class="row">
+        <MotResultsTable />
+    </div>
+</div>
 
-<MotResultsTable />

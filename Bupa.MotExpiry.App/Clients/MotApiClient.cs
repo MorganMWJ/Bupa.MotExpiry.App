@@ -1,5 +1,5 @@
-﻿using Bupa.MotExpiry.App.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Bupa.MotExpiry.App.Extensions;
+using Bupa.MotExpiry.App.Models;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace Bupa.MotExpiry.App.Clients;
@@ -26,6 +26,14 @@ public class MotApiClient
 
         var response = await _httpClient.GetAsync(uri);
 
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Unsuccessful response from API. StatusCode: {response.StatusCode}.");
+        }
 
+        var responseString = await response.Content.ReadAsStringAsync();
+        // using List<> because array is the base object of the json response :(
+        var responseObject = await response.Content.ReadFromJsonAsync<List<MotServiceResponse>>();
+        return responseObject.First().ToCarDetails();
     }
 }

@@ -9,4 +9,18 @@ public partial class MotResultsTable
     [Inject]
     public ApplicationState State { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        State.RefreshRequested += RefreshThisComponentAsync;
+    }
+
+    public void Dispose()
+    {
+        State.RefreshRequested -= RefreshThisComponentAsync;
+    }
+
+    private async Task RefreshThisComponentAsync()
+    {
+        await InvokeAsync(StateHasChanged);
+    }
 }

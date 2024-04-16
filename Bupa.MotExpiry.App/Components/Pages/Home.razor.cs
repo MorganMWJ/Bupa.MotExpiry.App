@@ -12,20 +12,34 @@ public partial class Home
     [Inject]
     public MotApiClient MotApiClient { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        State.RefreshRequested += RefreshThisComponentAsync;
-    }
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    State.RefreshRequested += RefreshThisComponentAsync;
+    //}
 
-    public void Dispose()
-    {
-        State.RefreshRequested -= RefreshThisComponentAsync;
-    }
+    //public void Dispose()
+    //{
+    //    State.RefreshRequested -= RefreshThisComponentAsync;
+    //}
 
-    private async Task RefreshThisComponentAsync()
-    {
-        //call api and update car details
+    //private async Task RefreshThisComponentAsync()
+    //{
+    //    await InvokeAsync(StateHasChanged);
+    //}
 
-        await InvokeAsync(StateHasChanged);
+    public async Task SearchWithRegistration(string registration)
+    {
+        State.InputRegistration = registration;
+
+        try
+        {
+            State.CarDetails = await MotApiClient.GetCarDetailsAsync(registration);
+        }
+        catch(Exception ex)
+        {
+
+        }
+
+        State.ApplicationStateHasChanged();
     }
 }

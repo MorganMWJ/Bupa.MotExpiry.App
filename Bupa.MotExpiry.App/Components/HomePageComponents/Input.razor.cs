@@ -10,5 +10,12 @@ public partial class Input
 
     [Parameter]
     [EditorRequired]
-    public string BindInput { get; set; }
+    public EventCallback<string> InputCallback { get; set; }
+
+    private string _bindInput = string.Empty;
+
+    private async Task ProcessInput()
+    {
+        await InputCallback.InvokeAsync(_bindInput);
+    }
 }
