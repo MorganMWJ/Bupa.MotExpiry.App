@@ -1,10 +1,10 @@
-﻿using Bupa.MotExpiry.App.Models;
+﻿using Bupa.MotExpiry.App.Enums;
 using Bupa.MotExpiry.App.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace Bupa.MotExpiry.App.Components.HomePageComponents;
 
-public partial class MotResultsTable : IDisposable
+public partial class AlertDisplay : IDisposable
 {
     [Inject]
     public ApplicationState State { get; set; }

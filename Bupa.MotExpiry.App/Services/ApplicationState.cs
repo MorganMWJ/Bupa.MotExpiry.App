@@ -11,6 +11,8 @@ public class ApplicationState
 
     public CarDetails? CarDetails { get; set; }
 
+    public AlertDisplay AlertDisplay { get; set; } = new();
+
     /// <summary>
     /// This multicast delegate is used to register handlers
     /// to be called when the State property has changed.

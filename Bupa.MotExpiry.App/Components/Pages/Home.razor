@@ -3,15 +3,18 @@
 
 @using Bupa.MotExpiry.App.Components.HomePageComponents
 @using Bupa.MotExpiry.App.Constants
+@using Bupa.MotExpiry.App.Enums
 
 <PageTitle>MOT Expiry Checker</PageTitle>
 
-<div class="container-fluid">
-    <div class="row">
-        <Input InputLabel="@DisplayStrings.RegistraionInputLabel" InputCallback=@SearchWithRegistration />
+<div class="container-fluid w-50">
+    <div class="row m-3 p-3 border border-primary" style="background-color: #eee;">
+        <RegistrationInput />
     </div>
-    <div class="row">
+    <div class="row m-3 p-3">
         <MotResultsTable />
+        <AlertDisplay />
     </div>
+    
 </div>
 

@@ -1,37 +1,51 @@
-﻿@using Bupa.MotExpiry.App.Constants
+﻿@rendermode InteractiveServer
+
+@using Bupa.MotExpiry.App.Constants
+@using Bupa.MotExpiry.App.Extensions
 
 @if (State.CarDetails != null)
 {
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th colspan="2" class="text-center">@DisplayStrings.ResultDetails</th>
+                <th id="@DisplayStrings.ResultTableHeader"
+                colspan="2" class="text-center">
+                    @(DisplayStrings.ResultDetails
+                    + (State.CarDetails.HasMotExpired() ? 
+                    DisplayStrings.Expired : 
+                    DisplayStrings.NotExpired) )</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <th scope="row">@nameof(State.CarDetails.Registration)</th>
-                <td>@State.CarDetails.Registration</td>
+                <td id="@DisplayStrings.ResultTableDataReg">
+                    @State.CarDetails.Registration</td>
             </tr>
             <tr>
                 <th scope="row">@nameof(State.CarDetails.Make)</th>
-                <td>@State.CarDetails.Make</td>
+                <td id="@DisplayStrings.ResultTableDataMake">
+                    @State.CarDetails.Make</td>
             </tr>
             <tr>
                 <th scope="row">@nameof(State.CarDetails.Model)</th>
-                <td>@State.CarDetails.Model</td>
+                <td id="@DisplayStrings.ResultTableDataModel">
+                    @State.CarDetails.Model</td>
             </tr>
             <tr>
                 <th scope="row">@nameof(State.CarDetails.Colour)</th>
-                <td>@State.CarDetails.Colour</td>
+                <td id="@DisplayStrings.ResultTableDataColour">
+                    @State.CarDetails.Colour</td>
             </tr>
             <tr>
                 <th scope="row">@DisplayStrings.MotExpiry</th>
-                <td>@State.CarDetails.MotExpiry</td>
+                <td id="@DisplayStrings.ResultTableDataMotExpiry">
+                    @State.CarDetails.MotExpiry</td>
             </tr>
             <tr>
                 <th scope="row">@DisplayStrings.MileageAtLastMot</th>
-                <td>@State.CarDetails.MileageAtLastMot</td>
+                <td id="@DisplayStrings.ResultTableDataMileage">
+                    @State.CarDetails.MileageAtLastMot</td>
             </tr>
         </tbody>
     </table>

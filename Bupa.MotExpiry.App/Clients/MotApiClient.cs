@@ -7,12 +7,14 @@ namespace Bupa.MotExpiry.App.Clients;
 public class MotApiClient
 {
     private readonly HttpClient _httpClient;
+    private readonly ILogger<MotApiClient> _logger;
 
     private const string Endpoint = "/trade/vehicles/mot-tests";
 
-    public MotApiClient(HttpClient httpClient)
+    public MotApiClient(HttpClient httpClient, ILogger<MotApiClient> logger)
     {
         _httpClient = httpClient;
+        _logger = logger;
     }
 
     public async Task<CarDetails> GetCarDetailsAsync(string registration)
@@ -28,10 +30,10 @@ public class MotApiClient
 
         if (!response.IsSuccessStatusCode)
         {
-            throw new Exception($"Unsuccessful response from API. StatusCode: {response.StatusCode}.");
+            _logger.LogWarning($"Error on registration search. Unsuccessful response from API. StatusCode: {response.StatusCode}.");
+            return null;
         }
 
-        var responseString = await response.Content.ReadAsStringAsync();
         // using List<> because array is the base object of the json response :(
         var responseObject = await response.Content.ReadFromJsonAsync<List<MotServiceResponse>>();
         return responseObject.First().ToCarDetails();

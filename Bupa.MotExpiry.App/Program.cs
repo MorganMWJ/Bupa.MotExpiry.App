@@ -8,11 +8,19 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+        var app = CreateWebApplication();
+        app.Run();
+    }
+
+    public static WebApplication CreateWebApplication()
+    {
+        var builder = WebApplication.CreateBuilder();
 
         // Add services to the container.
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
+
+        builder.Logging.AddConsole();
 
         builder.Services.AddSingleton<ApplicationState>();
 
@@ -41,6 +49,6 @@ public class Program
         app.MapRazorComponents<Components.App>()
             .AddInteractiveServerRenderMode();
 
-        app.Run();
+        return app;
     }
 }

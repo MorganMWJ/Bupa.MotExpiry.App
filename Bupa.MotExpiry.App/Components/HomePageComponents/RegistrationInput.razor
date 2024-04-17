@@ -1,0 +1,12 @@
+﻿@rendermode InteractiveServer
+
+@using Bupa.MotExpiry.App.Constants
+
+<form class="form-inline">
+    <div class="form-floating mb-3">
+        <input class="form-control" id="registraionInput" placeholder="@DisplayStrings.RegistraionInputLabel"
+               type="text" maxlength="7" @bind-value="@_registraion" @bind-value:event="oninput" />
+        <label for="registraionInput">@DisplayStrings.RegistraionInputLabel</label>
+    </div>
+    <button class="btn btn-outline-primary" @onclick=@ProcessInputAsync>@DisplayStrings.Enter</button>
+</form>

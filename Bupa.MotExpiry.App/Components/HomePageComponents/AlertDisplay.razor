@@ -1,0 +1,8 @@
+﻿@rendermode InteractiveServer
+
+@if (State.AlertDisplay.DisplayAlert)
+{
+    <div class="@($"text-center alert alert-{State.AlertDisplay.AlertColor.ToString().ToLower()}")" role="alert">
+        @State.AlertDisplay.AlertText
+    </div>
+}
